@@ -1,1 +1,1 @@
-Content Management System by Cartwheel Galaxy Inc. / G-Tec
+Useful Code by Cartwheel Galaxy Inc. / G-Tec
