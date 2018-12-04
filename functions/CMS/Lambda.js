@@ -29,6 +29,7 @@ exports.handler = (event, context, callback) => {
             break;
         case 'DELETE':
             docClient.deleteItem(event.body, done);
+            break;
             
         case 'POST':
             event.body.Item.id = generateID();
