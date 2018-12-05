@@ -30,15 +30,15 @@ exports.handler = (event, context, callback) => {
         case 'DELETE':
             docClient.deleteItem(event.body, done);
             break;
-            
+        case 'PUT':
+            docClient.putItem(event.body, done);
+            break;
         case 'POST':
             event.body.Item.id = generateID();
             if(event.body.Item.src) {
-                //let encodedImage = JSON.parse(event.body.Item.src);
                 let encodedImage = event.body.Item.src;
                 var buf = encodedImage.replace(/^data:image\/\w+;base64,/, "");
                 let decodedImage = Buffer.from(buf, 'base64');
-                //var filePath = event.queryStringParameters.name + "-" + Date.now() + ".jpg";
                 var filePath = "" + Date.now() + ".jpg";
                 var params = {
                     "Body": decodedImage,
@@ -71,7 +71,7 @@ exports.handler = (event, context, callback) => {
             break;
             
             default:
-            done(new Error(`Unsupported method "${event.httpMethod}"`));
+                done(new Error(`Unsupported method "${event.httpMethod}"`));
     }
 };
 
